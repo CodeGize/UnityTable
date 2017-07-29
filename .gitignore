@@ -1,0 +1,11 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+/UnityProject/Library
+/UnityProject/Temp
+/UnityProject/UnityProject.CSharp.csproj
+/UnityProject/UnityProject.CSharp.Editor.csproj
+/UnityProject/UnityProject.CSharp.Editor.csproj.DotSettings
+/UnityProject/UnityProject.sln
+/UnityProject/UnityProject.v12.suo
