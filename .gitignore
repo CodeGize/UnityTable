@@ -9,3 +9,7 @@
 /UnityProject/UnityProject.CSharp.Editor.csproj.DotSettings
 /UnityProject/UnityProject.sln
 /UnityProject/UnityProject.v12.suo
+/UnityProject/.vs/UnityProject/v16
+/UnityProject/Logs
+/UnityProject/obj/Debug
+*.csproj
