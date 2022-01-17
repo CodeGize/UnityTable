@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
@@ -77,7 +76,6 @@ namespace UnityTable
 
         private readonly FilterMethod<T> m_filter;
 
-        [CanBeNull]
         private readonly SelectMethod<T> m_select;
 
         private List<CommonTreeViewItem<T>> Filter(IEnumerable<CommonTreeViewItem<T>> rows)

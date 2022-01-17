@@ -4,7 +4,6 @@ using System.Linq;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
-using UnityEngine.Profiling;
 using Object = UnityEngine.Object;
 
 namespace UnityTable
@@ -162,15 +161,12 @@ namespace UnityTable
         private void CellGUI(Rect cellRect, SerializedPropertyItem item, int columnIndex,
             ref RowGUIArgs args)
         {
-            Profiler.BeginSample("SerializedPropertyTreeView.CellGUI");
             CenterRectUsingSingleLineHeight(ref cellRect);
             var data = item.GetData();
             var column = (Column)multiColumnHeader.GetColumn(columnIndex);
             if (column.drawDelegate == DefaultDelegates.s_DrawName)
             {
-                Profiler.BeginSample("SerializedPropertyTreeView.OnItemGUI.LabelField");
                 DefaultGUI.Label(cellRect, data.Name, IsSelected(args.item.id), false);
-                Profiler.EndSample();
             }
             else if (column.drawDelegate != null)
             {
@@ -182,9 +178,7 @@ namespace UnityTable
                     GUI.SetNextControlName(Styles.focusHelper);
                 var serializedProperty = data.Properties[columnIndex];
                 EditorGUI.BeginChangeCheck();
-                Profiler.BeginSample("SerializedPropertyTreeView.OnItemGUI.drawDelegate");
                 column.drawDelegate(cellRect, serializedProperty, m_ColumnsInternal[columnIndex].dependencyProps);
-                Profiler.EndSample();
                 if (EditorGUI.EndChangeCheck())
                 {
                     m_ChangedId = column.filter == null || !column.filter.Active()
@@ -216,7 +210,6 @@ namespace UnityTable
                             }
                     }
                 }
-                Profiler.EndSample();
             }
         }
 
@@ -424,18 +417,14 @@ namespace UnityTable
         {
             public static readonly Column.DrawEntry s_DrawDefault = delegate(Rect r, SerializedProperty prop, SerializedProperty[] dependencies)
             {
-                Profiler.BeginSample("PropDrawDefault");
                 EditorGUI.PropertyField(r, prop, GUIContent.none);
-                Profiler.EndSample();
             };
 
             public static readonly Column.DrawEntry s_DrawCheckbox = delegate(Rect r, SerializedProperty prop, SerializedProperty[] dependencies)
             {
-                Profiler.BeginSample("PropDrawCheckbox");
                 var num = r.width / 2f - 8f;
                 r.x += num < 0f ? 0f : num;
                 EditorGUI.PropertyField(r, prop, GUIContent.none);
-                Profiler.EndSample();
             };
 
             public static readonly Column.DrawEntry s_DrawName = delegate { };

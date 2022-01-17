@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 namespace UnityTable
 {
@@ -34,9 +33,7 @@ namespace UnityTable
 
         public bool Repopulate()
         {
-            Profiler.BeginSample("SerializedPropertyDataStore.Repopulate.GatherDelegate");
             var array = m_gatherDel();
-            Profiler.EndSample();
             if (m_objects != null)
             {
                 if (array.Length == m_objects.Length &&

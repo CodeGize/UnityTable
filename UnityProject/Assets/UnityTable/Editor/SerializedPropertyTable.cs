@@ -1,7 +1,6 @@
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
-using UnityEngine.Profiling;
 
 namespace UnityTable
 {
@@ -101,7 +100,6 @@ namespace UnityTable
 
         public void OnGUI()
         {
-            Profiler.BeginSample("SerializedPropertyTable.OnGUI");
             InitIfNeeded();
             var rect = GUILayoutUtility.GetRect(0f, Screen.width, 0f, Screen.height);
             if (Event.current.type != EventType.Layout)
@@ -116,14 +114,11 @@ namespace UnityTable
                 rect.height = rect.height - m_FilterHeight - m_DragHeight * 2;
 
                 var rect2 = rect;
-                Profiler.BeginSample("TreeView.OnGUI");
                 m_TreeView.OnGUI(rect2);
-                Profiler.EndSample();
 
                 m_TreeView.OnFilterGUI(r);
                 if (m_TreeView.IsFilteredDirty())
                     m_TreeView.Reload();
-                Profiler.EndSample();
             }
         }
 
