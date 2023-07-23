@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
-namespace UnityTable.Example
+namespace StardustEditorTool
 {
     //a normal EditorWindow
     public class ExampleDataTableWnd : EditorWindow

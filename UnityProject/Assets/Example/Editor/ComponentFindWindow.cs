@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace UnityTable.Example
+namespace StardustEditorTool
 {
     public class ComponentFindWindow : EditorWindow
     {
@@ -86,7 +86,7 @@ namespace UnityTable.Example
                 dependencyIndices = null,
                 compareDelegate = SerializedPropertyTreeView.DefaultDelegates.s_CompareInt,
                 drawDelegate = SerializedPropertyTreeView.DefaultDelegates.s_DrawDefault,
-                filter = new SerializedPropertyFilters.Name()
+                //filter = new SerializedPropertyFilters.Name()
             };
             for (var i = 0; i < columns.Length; i++)
             {
