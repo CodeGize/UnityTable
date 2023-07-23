@@ -6,9 +6,9 @@ using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace UnityTable
+namespace StardustEditorTool
 {
-    internal class SerializedPropertyTreeView : TreeView
+    public class SerializedPropertyTreeView : TreeView
     {
         private bool m_bFilterSelection;
 
@@ -246,10 +246,10 @@ namespace UnityTable
             var width = r.width;
             var num = 16f;
             r.width = num;
-            m_bFilterSelection = EditorGUI.Toggle(r, m_bFilterSelection);
+            //m_bFilterSelection = EditorGUI.Toggle(r, m_bFilterSelection);
             r.x += num;
-            r.width = GUI.skin.label.CalcSize(Styles.filterSelection).x;
-            EditorGUI.LabelField(r, Styles.filterSelection);
+            //r.width = GUI.skin.label.CalcSize(Styles.filterSelection).x;
+            //EditorGUI.LabelField(r, Styles.filterSelection);
             r.width = Mathf.Min(width - (r.x + r.width), 300f);
             r.x = width - r.width + 25;
             for (var i = 0; i < multiColumnHeader.state.columns.Length; i++)
@@ -257,8 +257,11 @@ namespace UnityTable
                 if (IsColumnVisible(i))
                 {
                     var column = Col(i);
-                    if (column.filter != null && column.filter.GetType().Equals(typeof(SerializedPropertyFilters.Name)))
+                    if (column.filter is SerializedPropertyFilters.Name)
+                    {
                         column.filter.OnGUI(r);
+                        break;
+                    }
                 }
             }
             if (EditorGUI.EndChangeCheck())
@@ -371,7 +374,7 @@ namespace UnityTable
         }
 
 
-        internal class SerializedPropertyItem : TreeViewItem
+        public class SerializedPropertyItem : TreeViewItem
         {
             private readonly SerializedPropertyDataStore.Data m_Data;
 
@@ -387,7 +390,7 @@ namespace UnityTable
             }
         }
 
-        internal class Column : MultiColumnHeaderState.Column
+        public class Column : MultiColumnHeaderState.Column
         {
             public delegate int CompareEntry(SerializedProperty lhs, SerializedProperty rhs);
 
@@ -413,7 +416,7 @@ namespace UnityTable
             public SerializedProperty[] dependencyProps;
         }
 
-        internal class DefaultDelegates
+        public class DefaultDelegates
         {
             public static readonly Column.DrawEntry s_DrawDefault = delegate(Rect r, SerializedProperty prop, SerializedProperty[] dependencies)
             {

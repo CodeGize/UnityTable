@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace UnityTable
+namespace StardustEditorTool
 {
     internal static class Styles
     {

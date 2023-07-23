@@ -1,6 +1,6 @@
 using UnityEditor.IMGUI.Controls;
 
-namespace UnityTable
+namespace StardustEditorTool
 {
     internal class CommonTreeViewItem<T> : TreeViewItem where T : class
     {

@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace UnityTable
+namespace StardustEditorTool
 {
-    internal class SerializedPropertyDataStore
+    public class SerializedPropertyDataStore
     {
         private Data[] m_elements;
 
@@ -58,7 +58,7 @@ namespace UnityTable
             m_elements = null;
         }
 
-        internal class Data
+        public class Data
         {
             private Object m_object;
 
@@ -127,6 +127,6 @@ namespace UnityTable
             }
         }
 
-        internal delegate Object[] GatherDelegate();
+        public delegate Object[] GatherDelegate();
     }
 }

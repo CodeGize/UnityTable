@@ -2,11 +2,11 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace UnityTable
+namespace StardustEditorTool
 {
-    internal class SerializedPropertyFilters
+    public class SerializedPropertyFilters
     {
-        internal interface IFilter
+        public interface IFilter
         {
             bool Active();
 
@@ -19,7 +19,7 @@ namespace UnityTable
             void DeserializeState(string state);
         }
 
-        internal abstract class SerializableFilter : SerializedPropertyFilters.IFilter
+        public abstract class SerializableFilter : SerializedPropertyFilters.IFilter
         {
             public abstract bool Active();
 
@@ -38,7 +38,7 @@ namespace UnityTable
             }
         }
 
-        internal class String : SerializedPropertyFilters.SerializableFilter
+        public class String : SerializedPropertyFilters.SerializableFilter
         {
             private static class Styles
             {
@@ -77,7 +77,7 @@ namespace UnityTable
             }
         }
 
-        internal sealed class Name : SerializedPropertyFilters.String
+        public sealed class Name : SerializedPropertyFilters.String
         {
             public bool Filter(string str)
             {
@@ -85,7 +85,7 @@ namespace UnityTable
             }
         }
 
-        internal sealed class None : SerializedPropertyFilters.IFilter
+        public sealed class None : SerializedPropertyFilters.IFilter
         {
             public bool Active()
             {
@@ -111,6 +111,6 @@ namespace UnityTable
             }
         }
 
-        internal static readonly SerializedPropertyFilters.None s_FilterNone = new SerializedPropertyFilters.None();
+        public static readonly SerializedPropertyFilters.None s_FilterNone = new SerializedPropertyFilters.None();
     }
 }

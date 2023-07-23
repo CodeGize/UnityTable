@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-namespace UnityTable
+namespace StardustEditorTool
 {
     public abstract class CommonTable
     {
         public abstract void OnGUI();
     }
-
     public class CommonTable<T> : CommonTable where T : class
     {
         private const float DragHeight = 20f;
@@ -30,13 +29,14 @@ namespace UnityTable
 
         protected MultiColumnHeaderState MultiColumnHeaderState { get; private set; }
 
-        public CommonTable(List<T> datas, CommonTableColumn<T>[] cs, FilterMethod<T> onfilter, SelectMethod<T> onselect = null)
+        public CommonTable(List<T> datas, CommonTableColumn<T>[] cs, FilterMethod<T> filter, SelectMethod<T> select = null)
         {
+            // ReSharper disable once CoVariantArrayConversion
             var state = new MultiColumnHeaderState(cs);
             MultiColumnHeaderState = state;
-            m_filter = onfilter;
+            m_filter = filter;
             m_datas = datas;
-            m_select = onselect;
+            m_select = select;
         }
 
         private void InitIfNeeded()
@@ -71,24 +71,8 @@ namespace UnityTable
 
             var rect2 = rect;
             m_treeView.OnGUI(rect2);
-            //DrawExportButton(r);
             m_treeView.OnFilterGUI(r);
-            //if (m_treeView.IsFilteredDirty())
-            //    m_treeView.Reload();
         }
-
-        //private void DrawExportButton(Rect rect)
-        //{
-        //    var br = rect;
-        //    br.height = 20;
-        //    br.width = 50;
-        //    if (GUI.Button(br, "Export"))
-        //    {
-        //        var path = EditorUtility.SaveFilePanel("file", Application.dataPath, "data", "xml");
-        //        if (!string.IsNullOrEmpty(path))
-        //            Serializer.SaveAsXml(m_datas, path);
-        //    }
-        //}
     }
 
     public delegate void DrawCellMethod<in T>(Rect cellRect, T item);

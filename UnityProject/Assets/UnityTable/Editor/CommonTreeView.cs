@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-namespace UnityTable
+namespace StardustEditorTool
 {
     public class CommonTreeView<T> : TreeView where T : class
     {
@@ -27,7 +27,7 @@ namespace UnityTable
 
             multiColumnHeader.sortingChanged += OnSortingChanged;
             multiColumnHeader.visibleColumnsChanged += OnVisibleColumnChanged;
-            
+
             showAlternatingRowBackgrounds = true;
             showBorder = true;
             rowHeight = EditorGUIUtility.singleLineHeight;
@@ -143,7 +143,7 @@ namespace UnityTable
             r.width = num;
             r.x += num;
             r.width = GUI.skin.label.CalcSize(Styles.filterSelection).x;
-
+            
             //EditorGUI.LabelField(r, Styles.filterSelection);
             r.width = Mathf.Min(width - (r.x + r.width), 300f);
             r.x = width - r.width + 25;
@@ -158,9 +158,7 @@ namespace UnityTable
         private void FilterGUI(Rect r)
         {
             r.width -= 15f;
-            //GUI.SetNextControlName("InputText");
-            m_text = EditorGUI.DelayedTextField(r, GUIContent.none, m_text, Styles.searchField);
-            //EditorGUI.FocusTextInControl("InputText");
+            m_text = EditorGUI.TextField(r, GUIContent.none, m_text, Styles.searchField);
             r.x += r.width;
             r.width = 15f;
             bool flag = m_text != "";

@@ -2,9 +2,9 @@ using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-namespace UnityTable
+namespace StardustEditorTool
 {
-    internal class SerializedPropertyTable
+    public class SerializedPropertyTable
     {
         private static readonly string s_TableHeight = "_TableHeight";
 
@@ -139,6 +139,6 @@ namespace UnityTable
             public static readonly GUIStyle DragHandle = "RL DragHandle";
         }
 
-        internal delegate SerializedPropertyTreeView.Column[] HeaderDelegate(out string[] propNames);
+        public delegate SerializedPropertyTreeView.Column[] HeaderDelegate(out string[] propNames);
     }
 }
